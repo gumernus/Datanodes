@@ -6,6 +6,9 @@
 ```
 npm install discord.js
 ```
+```
+npm install express.js
+```
 
 ## Run
 > Windows / Mac / Linux
