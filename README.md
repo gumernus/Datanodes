@@ -16,6 +16,6 @@ npm install express.js
 node app.js
 ```
 
-## More info.
+## More info
 > This discord bot is my bot I've ever made
 
