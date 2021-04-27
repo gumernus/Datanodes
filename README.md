@@ -17,5 +17,5 @@ node app.js
 ```
 
 ## More info
-> This discord bot is my bot I've ever made
+> This bot can moderate the entire server itself.
 
