@@ -8,6 +8,7 @@ require("events").EventEmitter.defaultMaxListeners = 15;
 //commands
 const { helpCommand, helpNormalCommand, helpAdminCommand } = require("./commands/normal/help");
 const {joinCommand, leaveCommand} = require("./commands/normal/join_leave")
+const {sayCommand} = require("./commands/normal/easy")
 
 client.on("guildMemberAdd", (member) => {
   joinCommand(member, client, Discord);
@@ -23,18 +24,25 @@ client.on("ready", () => {
   client.user.setActivity(config.status);
 
   client.on("message", (message) => {
-    if (message.content === ".help") {
-      helpCommand(message, Discord);
+    if (message.author.bot) {
+      return
     }
-    if (message.content === ".help normal") {
-      helpNormalCommand(message, Discord);
-    }
-    if (message.content === ".help admin") {
-      helpAdminCommand(message, Discord);
+    else{
+      if (message.content === ".help") {
+        helpCommand(message, Discord);
+      }
+      if (message.content === ".help normal") {
+        helpNormalCommand(message, Discord);
+      }
+      if (message.content === ".help admin") {
+        helpAdminCommand(message, Discord);
+      }
+      if (message.content.startsWith(".say")){
+        sayCommand(message, Discord)
+      }
     }
   });
 });
 
 keepAlive();
 client.login(config.token);
-

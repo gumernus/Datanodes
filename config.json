@@ -1,1 +1,10 @@
-
+{
+    "invite": "https://discord.com/api/oauth2/authorize?client_id=813370804641071105&permissions=8&scope=bot",
+    "token": "ODEzMzcwODA0NjQxMDcxMTA1.YDOUlw.5RfoEcIKqNpQI5Dx3PUuPfSEIMo",
+    "prefix": "",
+    "status": ">help",
+    "barva": "#5345B0",
+    "footer": "DataNodes | Powered By Tavarx & Udracks",
+    "footerImage": "https://imgur.com/UuuSydU.png"
+  }
+  
