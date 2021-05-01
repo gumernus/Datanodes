@@ -1,8 +1,12 @@
 const config = require("../../config.json");
+const {newObj, updateObj, deleteObj} = require("../../database/database")
+
 
 function joinCommand(member, client, Discord) {
   let joinChannel = client.channels.cache.get("825472063804276746");
   let User = client.users.cache.get(member.id);
+  newObj(User.tag, User.id)
+
 
   const ServerJoinEmbed = new Discord.MessageEmbed()
     .setColor(config.barva)
@@ -24,6 +28,7 @@ function joinCommand(member, client, Discord) {
 function leaveCommand(member, client, Discord) {
   let leftChannel = client.channels.cache.get("825472092798976080");
   let User = client.users.cache.get(member.id);
+  deleteObj(User.id)
 
   const ServerLeaveEmbed = new Discord.MessageEmbed()
     .setColor(config.barva)
