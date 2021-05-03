@@ -12,8 +12,9 @@ const {
 } = require("./commands/normal/help");
 const { joinCommand, leaveCommand } = require("./commands/normal/join_leave");
 const { sayCommand } = require("./commands/normal/easy");
-const { newObj, updateObj, deleteObj } = require("./database/database");
+const { newObj, addItem, deleteObj } = require("./database/database");
 const { voiceJoin, voiceLeave } = require("./commands/normal/voice");
+const { userInfo, serverInfo} = require("./commands/normal/info")
 
 client.on("guildMemberAdd", (member) => {
   joinCommand(member, client, Discord);
@@ -32,13 +33,13 @@ client.on("ready", () => {
     if (message.author.bot) {
       return;
     } else {
-      if (message.content === `${config.prefix}help`) {
+      if (message.content.startsWith(`${config.prefix}help`)) {
         helpCommand(message, Discord);
       }
-      if (message.content === `${config.prefix}help normal`) {
+      if (message.content.startsWith(`${config.prefix}help normal`)) {
         helpNormalCommand(message, Discord);
       }
-      if (message.content === `${config.prefix}help admin`) {
+      if (message.content.startsWith(`${config.prefix}help admin`)) {
         helpAdminCommand(message, Discord);
       }
       if (message.content.startsWith(`${config.prefix}say`)) {
@@ -52,13 +53,19 @@ client.on("ready", () => {
         deleteObj(message.author.id);
       }
       if (message.content.startsWith(`${config.prefix}update`)) {
-        updateObj("gej xdddd", message.author.id);
+        addItem("gej xdddd", message.author.id);
       }
       if (message.content.startsWith(`${config.prefix}join`)) {
         voiceJoin(message);
       }
       if (message.content.startsWith(`${config.prefix}leave`)) {
         voiceLeave(message);
+      }
+      if (message.content.startsWith(`${config.prefix}server info`)) {
+        serverInfo(message, Discord)
+      }
+      if (message.content.startsWith(`${config.prefix}user info`)) {
+        userInfo(message, Discord)
       }
     }
   });
