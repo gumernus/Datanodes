@@ -1,11 +1,12 @@
 let fs = require("fs");
 const obj = require("./data1.json");
 
-function updateObj(newUserName, userId) {
+function addItem(newUserName, userId) {
   for (let i = 0; i < obj.length; i++) {
     if (obj[i].id == userId) {
         console.log("User", obj[i].name , "has been updated to", newUserName);
       obj[i].name = newUserName;
+      obj[i].idk = newUserName
       fs.writeFileSync("./database/data1.json", JSON.stringify(obj, null, 1));
     } else {
     }
@@ -51,8 +52,7 @@ function deleteObj(userId) {
 }
 
 module.exports = {
-  updateObj,
+  addItem,
   newObj,
   deleteObj
 };
-
