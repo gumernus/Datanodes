@@ -14,7 +14,7 @@ const { joinCommand, leaveCommand } = require("./commands/normal/join_leave");
 const { sayCommand } = require("./commands/normal/easy");
 const { newObj, addItem, deleteObj } = require("./database/database");
 const { voiceJoin, voiceLeave } = require("./commands/normal/voice");
-const { userInfo, serverInfo} = require("./commands/normal/info")
+const { serverInfo } = require("./commands/normal/info");
 
 client.on("guildMemberAdd", (member) => {
   joinCommand(member, client, Discord);
@@ -62,10 +62,7 @@ client.on("ready", () => {
         voiceLeave(message);
       }
       if (message.content.startsWith(`${config.prefix}server info`)) {
-        serverInfo(message, Discord)
-      }
-      if (message.content.startsWith(`${config.prefix}user info`)) {
-        userInfo(message, Discord)
+        serverInfo(message, Discord);
       }
     }
   });
