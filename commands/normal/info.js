@@ -1,28 +1,5 @@
 const config = require("../../config.json");
 
-function userInfo (message, Discord) {
-  console.log(message)
-    const UserInfoEmbed = new Discord.MessageEmbed()
-    .setColor(config.barva)
-    .setTitle(`**➤⌠👪⌡Update uživatele**`)
-    .setDescription(`Informace o serveru`)
-    .addFields({
-        name: "Jméno",
-        value: "`" + message.author.tag + "`",
-      })
-      .addFields({
-        name: "Přezdívka",
-        value: "`" + `${message.author.nickname ? `${message.author.nickname}` : 'nemá přezdívku'}` + "`", //nedoděláno (nefunguje)
-      })
-      .addFields({
-        name: "Bot",
-        value: "`" + `${message.author.bot ? `ano je bot` : 'není bot'}` + "`",
-      })
-
-    .setFooter(config.footer, config.footerImage);
-  message.channel.send(UserInfoEmbed);
-}
-
 function serverInfo (message, Discord) {
     const ServerInfoEmbed = new Discord.MessageEmbed()
     .setColor(config.barva)
@@ -65,6 +42,5 @@ function serverInfo (message, Discord) {
 }
 
 module.exports = {
-    userInfo,
     serverInfo
 }
