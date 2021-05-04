@@ -35,34 +35,44 @@ client.on("ready", () => {
     } else {
       if (message.content.startsWith(`${config.prefix}help`)) {
         helpCommand(message, Discord);
+        return;
       }
       if (message.content.startsWith(`${config.prefix}help normal`)) {
         helpNormalCommand(message, Discord);
+        return;
       }
       if (message.content.startsWith(`${config.prefix}help admin`)) {
         helpAdminCommand(message, Discord);
+        return;
       }
       if (message.content.startsWith(`${config.prefix}say`)) {
         sayCommand(message, Discord);
+        return;
       }
       //databse testing
       if (message.content.startsWith(`${config.prefix}create`)) {
         newObj(message.author.tag, message.author.id);
+        return;
       }
       if (message.content.startsWith(`${config.prefix}delete`)) {
         deleteObj(message.author.id);
+        return;
       }
       if (message.content.startsWith(`${config.prefix}update`)) {
         addItem("gej xdddd", message.author.id);
+        return;
       }
       if (message.content.startsWith(`${config.prefix}join`)) {
         voiceJoin(message);
+        return;
       }
       if (message.content.startsWith(`${config.prefix}leave`)) {
         voiceLeave(message);
+        return;
       }
       if (message.content.startsWith(`${config.prefix}server info`)) {
         serverInfo(message, Discord);
+        return;
       }
     }
   });
