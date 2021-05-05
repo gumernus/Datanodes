@@ -3,6 +3,11 @@ const server = express();
 var http = require('http');
 var fs = require('fs');
 
+//colors
+let CReset = "\x1b[0m"
+let CYellow = "\x1b[33m"
+let CRed = "\x1b[31m"
+
 server.all('/', (req, res)=>{
 
    res.setHeader('Content-Type', 'text/html');
@@ -18,7 +23,7 @@ server.all('/', (req, res)=>{
 
 function keepAlive(){
 
-   server.listen(3000, ()=>{console.log("Server je online")});
+   server.listen(3000, ()=>{console.log(CYellow + "$ Server is online")});
 
 }
 
