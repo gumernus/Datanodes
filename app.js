@@ -16,7 +16,7 @@ const {
   helpAdminCommand,
 } = require("./commands/normal/help");
 const { joinCommand, leaveCommand } = require("./commands/normal/join_leave");
-const { sayCommand, permaInvite, adminAlert, modAlert } = require("./commands/normal/easy");
+const { sayCommand, permaInvite, adminAlert, modAlert, badWords } = require("./commands/normal/easy");
 const { newObj, addItem, deleteObj } = require("./database/database");
 const { voiceJoin, voiceLeave } = require("./commands/normal/voice");
 const { serverInfo } = require("./commands/normal/info");
@@ -41,6 +41,10 @@ client.on("ready", () => {
     if (message.author.bot) {
       return;
     } else {
+      badWords(message, Discord)
+      if (message.content.includes("discord.gg") || message.content.includes("dsc.gg")){
+          message.delete();
+      }
       if (message.content === `${config.prefix}help` ) {
         helpCommand(message, Discord);
         return;
