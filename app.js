@@ -53,7 +53,7 @@ client.on("ready", () => {
         helpAdminCommand(message, Discord);
         return;
       }
-      if (message.content === `${config.prefix}say`) {
+      if (message.content.startsWith(`${config.prefix}say`)) {
         sayCommand(message, Discord);
         return;
       }
@@ -111,7 +111,4 @@ client.on("ready", () => {
 });
 
 keepAlive();
-
-//process.env['DISCORD_BOT_TOKEN']
-//config.token
 client.login(config.token);
