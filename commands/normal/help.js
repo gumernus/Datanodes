@@ -9,15 +9,16 @@ function helpCommand(message, Discord) {
     )
     .addFields({
         name: "Commandy pro členy serveru",
-        value: "`" + ".help normal" + "`",
+        value: "`" + `${config.prefix}help normal` + "`",
       })
       .addFields({
         name: "Commandy pro admin team",
-        value: "`" + ".help admin" + "`",
+        value: "`" + `${config.prefix}help admin` + "`",
       })
     
     .setFooter(config.footer, config.footerImage);
   message.channel.send(MainHelpEmbed);
+  
 }
 
 function helpNormalCommand(message, Discord) {
@@ -26,12 +27,20 @@ function helpNormalCommand(message, Discord) {
     .setTitle(`**➤⌠🌍⌡Informace pro členy**`)
     .setDescription("Veškeré commandy pro členy serveru.")
     .addFields({
-      name: "Přivolá pomoc admin teamu",
-      value: "`" + ".alert" + "`",
+      name: "Napíše tvou zprávu",
+      value: "`" + `${config.prefix}say <zpráva>` + "`",
     })
     .addFields({
-      name: "Napíše tvou zprávu",
-      value: "`" + ".say <zpráva>" + "`",
+      name: "Vytvoří nekonečný invite",
+      value: "`" + `${config.prefix}create invite` + "`",
+    })
+    .addFields({
+      name: "Přivolá pomoc moderátorů",
+      value: "`" + `${config.prefix}mod alert` + "`",
+    })
+    .addFields({
+      name: "Přivolá pomoc adminů",
+      value: "`" + `${config.prefix}admin alert` + "`",
     })
     .setFooter(config.footer, config.footerImage);
   message.channel.send(NormalHelpEmbed);
@@ -45,19 +54,19 @@ function helpAdminCommand(message, Discord) {
     )
     .addFields({
         name: "Varuje uživatele",
-        value: "`" + ".warn <@ping>" + "`",
+        value: "`" + `${config.prefix}warn <@ping>` + "`",
       })
       .addFields({
         name: "Mutne uživatele",
-        value: "`" + ".mute <@ping>" + "`",
+        value: "`" + `${config.prefix}mute <@ping>` + "`",
       })
       .addFields({
         name: "Kickne uživatele",
-        value: "`" + "kick <@ping>" + "`",
+        value: "`" + `${config.prefix}kick <@ping>` + "`",
       })
       .addFields({
         name: "Zabanuje uživatele",
-        value: "`" + ".ban <@ping>" + "`",
+        value: "`" + `${config.prefix}ban <@ping>` + "`",
       })
     .setFooter(config.footer, config.footerImage);
   message.channel.send(AdminHelpEmbed);

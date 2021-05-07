@@ -19,6 +19,29 @@ function sayCommand(message, Discord) {
   }
 }
 
+function permaInvite(message, Discord) {
+  let invite = message.channel.createInvite({
+      maxAge: 0, 
+      maxUses: 0 
+    })
+    .then(invite => message.channel.send(`https://discord.gg/${invite.code}`))
+  .catch(console.error);
+    
+}
+
+function adminAlert(message, Discord) {
+  message.channel.send("<@&825457047054057530>")  
+}
+
+function modAlert(message, Discord) {
+  message.channel.send("<@&825457047054057529>")  
+}
+
+
+
 module.exports = {
   sayCommand,
+  permaInvite,
+  adminAlert,
+  modAlert
 };
