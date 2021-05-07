@@ -35,7 +35,7 @@ client.on("ready", () => {
   const clientNameCapitalized = clientName.charAt(0).toUpperCase() + clientName.slice(1)
   console.log(CYellow + "$ " + clientNameCapitalized, "is online ", CReset);
   client.user.setStatus("available");
-  client.user.setActivity(config.prefix + config.status);
+  client.user.setActivity(config.status);
 
   client.on("message", (message) => {
     if (message.author.bot) {
