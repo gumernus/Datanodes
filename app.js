@@ -111,4 +111,8 @@ client.on("ready", () => {
 });
 
 keepAlive();
+
+//process.env['DISCORD_BOT_TOKEN']
+//config.token
+
 client.login(config.token);
