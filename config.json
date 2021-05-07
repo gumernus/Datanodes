@@ -1,7 +1,7 @@
 {
     "token": "token",
     "prefix": "!",
-    "status": "help",
+    "status": "!help",
     "barva": "#ffa200",
     "footer": "Tarx | Powered By Tavarx & Udracks",
     "footerImage": "https://imgur.com/zN0GkBX.png"
