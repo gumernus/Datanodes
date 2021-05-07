@@ -37,11 +37,22 @@ function modAlert(message, Discord) {
   message.channel.send("<@&825457047054057529>")  
 }
 
+function badWords (message, Discord) {
+  forbidenWords = ["kokot", "piča", "debil", "zmrd", "čurák", "pica", "'Kokot", "Piča", "Debil", "Zmrd", "Čurák", "Pica"]
+  for (var i = 0; i < forbidenWords.length; i++) {
+    if (message.content.includes(forbidenWords[i])) {
+      message.delete();
+      return;
+    }
+  }
+}
 
 
 module.exports = {
   sayCommand,
   permaInvite,
   adminAlert,
-  modAlert
+  modAlert,
+  badWords
 };
+
