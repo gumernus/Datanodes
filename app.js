@@ -16,7 +16,7 @@ const {
   helpAdminCommand,
 } = require("./commands/normal/help");
 const { joinCommand, leaveCommand } = require("./commands/normal/join_leave");
-const { sayCommand, permaInvite, adminAlert, modAlert, badWords } = require("./commands/normal/easy");
+const { sayCommand, permaInvite, adminAlert, modAlert, badWords, oznameni, novinky } = require("./commands/normal/easy");
 const { newObj, addItem, deleteObj } = require("./database/database");
 const { voiceJoin, voiceLeave } = require("./commands/normal/voice");
 const { serverInfo } = require("./commands/normal/info");
@@ -61,6 +61,14 @@ client.on("ready", () => {
         sayCommand(message, Discord);
         return;
       }
+      if (message.content.startsWith(`${config.prefix}oznameni`)) {
+        oznameni(message, Discord, client);
+        return;
+      }
+      if (message.content.startsWith(`${config.prefix}novinky`)) {
+        novinky(message, Discord, client);
+        return;
+      }       
       //databse testing
       if (message.content === `${config.prefix}create`) {
         newObj(message.author.tag, message.author.id);
