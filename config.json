@@ -1,7 +1,8 @@
 {
+    "invite": "https://discord.com/api/oauth2/authorize?client_id=813370804641071105&permissions=8&scope=bot",
     "token": "token",
-    "prefix": "!",
-    "status": "!help",
+    "prefix": ".",
+    "status": ".help",
     "barva": "#ffa200",
     "footer": "Tarx | Powered By Tavarx",
     "footerImage": "https://imgur.com/zN0GkBX.png"
