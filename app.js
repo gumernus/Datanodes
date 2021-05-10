@@ -65,7 +65,7 @@ client.on("ready", () => {
         oznameni(message, Discord, client);
         return;
       }
-      if (message.content.startsWith(`${config.prefix}novinky`)) {
+      if (message.content.startsWith(`${config.prefix}novinka`)) {
         novinky(message, Discord, client);
         return;
       }       
