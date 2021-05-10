@@ -19,15 +19,15 @@ function serverInfo (message, Discord) {
       })
       .addFields({
         name: "Počet členů",
-        value: "`" + message.guild.memberCount + "`",
+        value: "`" + message.guild.memberCount + "`", inline: true
       })
       .addFields({
         name: "Počet rolí",
-        value: "`" + message.guild.roles.cache.size + "`",
+        value: "`" + message.guild.roles.cache.size + "`", inline: true
       })
       .addFields({
         name: "Počet emoji",
-        value: "`" + message.guild.emojis.cache.size + "`",
+        value: "`" + message.guild.emojis.cache.size + "`", inline: true
       })
       .addFields({
         name: "Čas vytvoření serveru",
