@@ -68,6 +68,14 @@ function helpAdminCommand(message, Discord) {
         name: "Zabanuje uživatele",
         value: "`" + `${config.prefix}ban <@ping>` + "`",
       })
+      .addFields({
+        name: "Napíše oznámení",
+        value: "`" + `${config.prefix}oznámení <text>` + "`",
+      })
+      .addFields({
+        name: "Napíše novinku",
+        value: "`" + `${config.prefix}novinka <text>` + "`",
+      })
     .setFooter(config.footer, config.footerImage);
   message.channel.send(AdminHelpEmbed);
 }
