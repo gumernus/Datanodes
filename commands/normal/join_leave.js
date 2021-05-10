@@ -2,11 +2,11 @@ const config = require("../../config.json");
 const { newObj, updateObj, deleteObj } = require("../../database/database");
 
 function joinCommand(member, client, Discord) {
-  let joinChannel = client.channels.cache.get("825472063804276746");
+  let joinChannel = client.channels.cache.get(config.joinChannelId);
   let User = client.users.cache.get(member.id);
   newObj(User.tag, User.id);
   function changeChannelName(n) {
-    var channel = client.channels.cache.get("825467962344603689");
+    var channel = client.channels.cache.get(config.memberCountChannelId);
     channel.setName(`➤⌠👪⌡ ${member.guild.memberCount} / 100`);
   }
   setTimeout(changeChannelName, 10000);
@@ -29,7 +29,7 @@ function joinCommand(member, client, Discord) {
 }
 
 function leaveCommand(member, client, Discord) {
-  let leftChannel = client.channels.cache.get("825472092798976080");
+  let leftChannel = client.channels.cache.get(config.leaveChannelId);
   let User = client.users.cache.get(member.id);
   deleteObj(User.id);
 
