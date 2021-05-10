@@ -30,11 +30,11 @@ function permaInvite(message, Discord) {
 }
 
 function adminAlert(message, Discord) {
-  message.channel.send("<@&825457047054057530>");
+  message.channel.send(`<@&${config.adminRoleId}>`);
 }
 
 function modAlert(message, Discord) {
-  message.channel.send("<@&825457047054057529>");
+  message.channel.send(`<@&${config.modRoleId}>`);
 }
 
 function badWords(message, Discord) {
@@ -64,7 +64,7 @@ function oznameni(message, Discord, client) {
   if (
     message.member.hasPermission("ADMINISTRATOR")
   ) {
-    oznameniChannel = client.channels.cache.get("825458683550105611");
+    oznameniChannel = client.channels.cache.get(config.oznameniChannelId);
     let oznameniContent = message.content.replace(`${config.prefix}oznameni`, "");
     message.delete();
     oznameniChannel.send(oznameniContent);
@@ -85,10 +85,10 @@ function novinky(message, Discord, client) {
   if (
     message.member.hasPermission("ADMINISTRATOR")
   ) {
-    oznameniChannel = client.channels.cache.get("825457047369285684");
-    let oznameniContent = message.content.replace(`${config.prefix}novinky`, "");
+    novinkyChannel = client.channels.cache.get(config.novinkyChannelId);
+    let novinkyContent = message.content.replace(`${config.prefix}novinka`, "");
     message.delete();
-    oznameniChannel.send(oznameniContent);
+    novinkyChannel.send(novinkyContent);
   } else {
     const Embed = new Discord.MessageEmbed()
       .setColor(config.barva)
