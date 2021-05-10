@@ -5,6 +5,13 @@
     "status": ".help",
     "barva": "#ffa200",
     "footer": "Tarx | Powered By Tavarx",
-    "footerImage": "https://imgur.com/zN0GkBX.png"
+    "footerImage": "https://imgur.com/zN0GkBX.png",
+    "modRoleId": "825457047054057529",
+    "adminRoleId": "825457047054057530",
+    "oznameniChannelId": "825458683550105611",
+    "novinkyChannelId": "825457047369285684",
+    "joinChannelId": "825472063804276746",
+    "leaveChannelId": "825472092798976080",
+    "memberCountChannelId": "825467962344603689"
   }
   
