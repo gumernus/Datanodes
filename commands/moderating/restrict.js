@@ -83,7 +83,7 @@ function Mute (message, Discord) {
       const autor = message.author.tag
       const target = mentions.users.first()
       if (target) {
-      let myrole = message.guild.roles.cache.find(r => r.id === "825457047025221685")
+      let myrole = message.guild.roles.cache.find(r => r.id === config.modRoleId)
       let targetmember = message.mentions.members.first();
       let member = message.guild.members.cache.get(targetmember.id) 
       member.roles.add(myrole)
