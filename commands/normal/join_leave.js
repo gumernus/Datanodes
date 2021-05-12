@@ -2,6 +2,8 @@ const config = require("../../config.json");
 const { newObj, updateObj, deleteObj } = require("../../database/database");
 
 function joinCommand(member, client, Discord) {
+  let myrole = member.guild.roles.cache.find(r => r.id === config.joinRoleId)
+  member.roles.add(myrole)
   let joinChannel = client.channels.cache.get(config.joinChannelId);
   let User = client.users.cache.get(member.id);
   newObj(User.tag, User.id);
