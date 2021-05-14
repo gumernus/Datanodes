@@ -5,9 +5,9 @@ const keepAlive = require("./server");
 require("events").EventEmitter.defaultMaxListeners = 15;
 
 //colors
-let CReset = "\x1b[0m"
-let CYellow = "\x1b[33m"
-let CRed = "\x1b[31m"
+let CReset = "\x1b[0m";
+let CYellow = "\x1b[33m";
+let CRed = "\x1b[31m";
 
 //commands
 const {
@@ -16,11 +16,22 @@ const {
   helpAdminCommand,
 } = require("./commands/normal/help");
 const { joinCommand, leaveCommand } = require("./commands/normal/join_leave");
-const { sayCommand, permaInvite, adminAlert, modAlert, badWords, oznameni, novinky, giveaway } = require("./commands/normal/easy");
-const { newObj, addItem, deleteObj } = require("./database/database");
+const {
+  sayCommand,
+  permaInvite,
+  adminAlert,
+  modAlert,
+  badWords,
+  oznameni,
+  novinky,
+  giveaway,
+  partnership,
+  clearAll
+} = require("./commands/normal/easy");
+const { newObj, deleteObj } = require("./database/database");
 const { voiceJoin, voiceLeave } = require("./commands/normal/voice");
 const { serverInfo } = require("./commands/normal/info");
-const { Kick, Ban, Mute, Warn } = require("./commands/moderating/restrict")
+const { Kick, Ban, Mute, Warn, ReportByUser } = require("./commands/moderating/restrict");
 
 client.on("guildMemberAdd", (member) => {
   joinCommand(member, client, Discord);
@@ -31,8 +42,9 @@ client.on("guildMemberRemove", (member) => {
 });
 
 client.on("ready", () => {
-  const clientName = client.user.username
-  const clientNameCapitalized = clientName.charAt(0).toUpperCase() + clientName.slice(1)
+  const clientName = client.user.username;
+  const clientNameCapitalized =
+    clientName.charAt(0).toUpperCase() + clientName.slice(1);
   console.log(CYellow + "$ " + clientNameCapitalized, "is online ", CReset);
   client.user.setStatus("available");
   client.user.setActivity(config.status);
@@ -42,21 +54,18 @@ client.on("ready", () => {
       return;
     }
     if (!message.guild) {
-      return;}
-       else {
-      badWords(message, Discord)
-      if (message.content.includes("discord.gg") || message.content.includes("dsc.gg")){
-          message.delete();
-      }
-      if (message.content === `${config.prefix}help` ) {
+      return;
+    } else {
+      badWords(message, Discord, client);
+      if (message.content === `${config.prefix}help`) {
         helpCommand(message, Discord);
         return;
       }
-      if (message.content === `${config.prefix}help normal` ) {
+      if (message.content === `${config.prefix}help normal`) {
         helpNormalCommand(message, Discord);
         return;
       }
-      if (message.content === `${config.prefix}help admin` ) {
+      if (message.content === `${config.prefix}help admin`) {
         helpAdminCommand(message, Discord);
         return;
       }
@@ -72,8 +81,16 @@ client.on("ready", () => {
         novinky(message, Discord, client);
         return;
       }
-      if (message.content.startsWith(`${config.prefix}giveaway`)){
-        giveaway(message, Discord, client)
+      if (message.content.startsWith(`${config.prefix}partnership`)) {
+        partnership(message, Discord, client);
+        return;
+      }
+      if (message.content.startsWith(`${config.prefix}giveaway`)) {
+        giveaway(message, Discord, client);
+        return;
+      }
+      if (message.content.startsWith(`${config.prefix}report`)) {
+        ReportByUser(message, Discord, client);
         return;
       }
       //databse testing
@@ -81,19 +98,23 @@ client.on("ready", () => {
         newObj(message.author.tag, message.author.id);
         return;
       }
-      if (message.content === `${config.prefix}delete`) {
-        deleteObj(message.author.id);
+      if (message.content === `${config.prefix}create all`) {
+        client.guilds.fetch(message.guild.id).then((guild) => {
+          guild.members.fetch().then((members) => {
+            members.each((member) => newObj(member.user.tag, member.user.id));
+          });
+        });
         return;
       }
-      if (message.content === `${config.prefix}update`) {
-        addItem("gej xdddd", message.author.id);
+      if (message.content === `${config.prefix}delete`) {
+        deleteObj(message.author.id);
         return;
       }
       if (message.content === `${config.prefix}join`) {
         voiceJoin(message);
         return;
       }
-      if (message.content ===`${config.prefix}leave`) {
+      if (message.content === `${config.prefix}leave`) {
         voiceLeave(message);
         return;
       }
@@ -117,6 +138,10 @@ client.on("ready", () => {
         Warn(message, Discord);
         return;
       }
+      if (message.content === `${config.prefix}clear`) {
+        clearAll(message, Discord, client)
+        return;
+      }
       if (message.content === `${config.prefix}create invite`) {
         permaInvite(message, Discord);
         return;
@@ -138,4 +163,4 @@ keepAlive();
 //process.env['DISCORD_BOT_TOKEN']
 //config.token
 
-client.login(config.token);
+client.login(process.env['DISCORD_BOT_TOKEN']);
