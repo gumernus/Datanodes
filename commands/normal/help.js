@@ -76,6 +76,10 @@ function helpAdminCommand(message, Discord) {
         name: "Napíše novinku",
         value: "`" + `${config.prefix}novinka <text>` + "`",
       })
+      .addFields({
+        name: "Udělá giveaway",
+        value: "`" + `${config.prefix}giveaway <cena giveawaye>` + "`",
+      })
     .setFooter(config.footer, config.footerImage);
   message.channel.send(AdminHelpEmbed);
 }
