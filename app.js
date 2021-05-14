@@ -16,11 +16,11 @@ const {
   helpAdminCommand,
 } = require("./commands/normal/help");
 const { joinCommand, leaveCommand } = require("./commands/normal/join_leave");
-const { sayCommand, permaInvite, adminAlert, modAlert, badWords, oznameni, novinky } = require("./commands/normal/easy");
+const { sayCommand, permaInvite, adminAlert, modAlert, badWords, oznameni, novinky, giveaway } = require("./commands/normal/easy");
 const { newObj, addItem, deleteObj } = require("./database/database");
 const { voiceJoin, voiceLeave } = require("./commands/normal/voice");
 const { serverInfo } = require("./commands/normal/info");
-const { Kick, Ban, Mute } = require("./commands/moderating/restrict")
+const { Kick, Ban, Mute, Warn } = require("./commands/moderating/restrict")
 
 client.on("guildMemberAdd", (member) => {
   joinCommand(member, client, Discord);
@@ -40,7 +40,10 @@ client.on("ready", () => {
   client.on("message", (message) => {
     if (message.author.bot) {
       return;
-    } else {
+    }
+    if (!message.guild) {
+      return;}
+       else {
       badWords(message, Discord)
       if (message.content.includes("discord.gg") || message.content.includes("dsc.gg")){
           message.delete();
@@ -68,7 +71,11 @@ client.on("ready", () => {
       if (message.content.startsWith(`${config.prefix}novinka`)) {
         novinky(message, Discord, client);
         return;
-      }       
+      }
+      if (message.content.startsWith(`${config.prefix}giveaway`)){
+        giveaway(message, Discord, client)
+        return;
+      }
       //databse testing
       if (message.content === `${config.prefix}create`) {
         newObj(message.author.tag, message.author.id);
@@ -94,16 +101,20 @@ client.on("ready", () => {
         serverInfo(message, Discord);
         return;
       }
-      if (message.content ===`${config.prefix}kick`) {
+      if (message.content.startsWith(`${config.prefix}kick`)) {
         Kick(message, Discord);
         return;
       }
-      if (message.content === `${config.prefix}ban`) {
+      if (message.content.startsWith(`${config.prefix}ban`)) {
         Ban(message, Discord);
         return;
       }
-      if (message.content === `${config.prefix}mute`) {
+      if (message.content.startsWith(`${config.prefix}mute`)) {
         Mute(message, Discord);
+        return;
+      }
+      if (message.content.startsWith(`${config.prefix}warn`)) {
+        Warn(message, Discord);
         return;
       }
       if (message.content === `${config.prefix}create invite`) {
