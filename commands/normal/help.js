@@ -70,7 +70,7 @@ function helpAdminCommand(message, Discord) {
       })
       .addFields({
         name: "Napíše oznámení",
-        value: "`" + `${config.prefix}oznámení <text>` + "`",
+        value: "`" + `${config.prefix}oznameni <text>` + "`",
       })
       .addFields({
         name: "Napíše novinku",
