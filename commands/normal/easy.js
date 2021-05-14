@@ -37,8 +37,30 @@ function modAlert(message, Discord) {
   message.channel.send(`<@&${config.modRoleId}>`);
 }
 
-function badWords(message, Discord) {
+function clearAll(message, Discord, client) {
+  if (
+    message.member.hasPermission("ADMINISTRATOR")
+  ) {
+    message.channel.bulkDelete(100)
+  } else {
+    const Embed = new Discord.MessageEmbed()
+      .setColor(config.barva)
+      .setTitle(`🚪 | ${message.author.tag} Nemáš oprávnění smazat zprávy`)
+      .setDescription(
+        `Tvá oprávnění nejsou dostatečně velká na to aby mohl/a smazat zprávy`
+      )
+      .setThumbnail(config.photo)
+      .setFooter(config.footer, config.footerImage);
+    message.channel.send(Embed);
+  }
+  
+}
+
+function badWords(message, Discord, client) {
+  const { Report } = require("../moderating/restrict")
   forbidenWords = [
+    "discord.gg",
+    "dsc.gg",
     "kokot",
     "piča",
     "debil",
@@ -54,7 +76,8 @@ function badWords(message, Discord) {
   ];
   for (var i = 0; i < forbidenWords.length; i++) {
     if (message.content.includes(forbidenWords[i])) {
-      message.delete();
+      message.delete()
+      Report(message, Discord, client);
       return;
     }
   }
@@ -124,6 +147,29 @@ function giveaway(message, Discord, client) {
   }
 }
 
+function partnership(message, Discord, client) {
+  if (
+    message.member.hasPermission("ADMINISTRATOR")
+  ) {
+    partnershipChannel = client.channels.cache.get(config.partnershipChannelId);
+    let partnershipContent = message.content.replace(`${config.prefix}partnership`, "");
+    message.delete();
+    partnershipChannel.send(partnershipContent);
+  } else {
+    const Embed = new Discord.MessageEmbed()
+      .setColor(config.barva)
+      .setTitle(`🚪 | ${message.author.tag} Nemáš oprávnění udělat spolupráci`)
+      .setDescription(
+        `Tvá oprávnění nejsou dostatečně velká na to aby mohl/a udělat spolupráci `
+      )
+      .setThumbnail(config.photo)
+      .setFooter(config.footer, config.footerImage);
+    message.channel.send(Embed);
+  }
+}
+
+
+
 module.exports = {
   sayCommand,
   permaInvite,
@@ -132,5 +178,7 @@ module.exports = {
   badWords,
   oznameni,
   novinky,
-  giveaway
+  giveaway,
+  partnership,
+  clearAll
 };
