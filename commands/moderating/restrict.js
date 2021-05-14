@@ -181,9 +181,31 @@ function Warn(message, Discord) {
   }
 }
 
+function Report(message, Discord, client) {
+  reportChannel = client.channels.cache.get(config.reportsChannelId);
+  reportChannel.send(`${message.author.tag} ${message.content}`);
+
+}
+
+function ReportByUser(message, Discord, client) {
+    reportChannel = client.channels.cache.get(config.reportsChannelId);
+    let reportContent = message.content.replace(`${config.prefix}report`, "");
+    if (message.content.includes("https://discord.com/channels/")){
+      message.delete();
+      reportChannel.send(`Uživatel ${message.author.tag} reportoval zprávu ${reportContent}`);
+    } else {
+      message.channel.send(`${message.author.tag} musíš zkopírovat odkaz na zprávu kterou chceš reportovat.`)
+    }
+}
+
+
+
 module.exports = {
   Kick,
   Ban,
   Mute,
-  Warn
+  Warn,
+  Report,
+  ReportByUser
 };
+
