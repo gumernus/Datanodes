@@ -102,6 +102,28 @@ function novinky(message, Discord, client) {
   }
 }
 
+function giveaway(message, Discord, client) {
+  if (
+    message.member.hasPermission("ADMINISTRATOR")
+  ) {
+    oznameniChannel = client.channels.cache.get(config.oznameniChannelId);
+    var randomUser = message.guild.members.cache.random();
+    let oznameniContent = "Cena:" + message.content.replace(`${config.prefix}giveaway`, "") + ` Výherce: ${randomUser.user.tag}`;
+    message.delete();
+    oznameniChannel.send(oznameniContent);
+  } else {
+    const Embed = new Discord.MessageEmbed()
+      .setColor(config.barva)
+      .setTitle(`🚪 | ${message.author.tag} Nemáš oprávnění udělat giveaway`)
+      .setDescription(
+        `Tvá oprávnění nejsou dostatečně velká na to aby mohl/a udělat giveaway `
+      )
+      .setThumbnail(config.photo)
+      .setFooter(config.footer, config.footerImage);
+    message.channel.send(Embed);
+  }
+}
+
 module.exports = {
   sayCommand,
   permaInvite,
@@ -109,5 +131,6 @@ module.exports = {
   modAlert,
   badWords,
   oznameni,
-  novinky
+  novinky,
+  giveaway
 };
