@@ -1,12 +1,10 @@
 let fs = require("fs");
 const obj = require("./data1.json");
 
-function addItem(newUserName, userId) {
+function updateObj(newUserName, userId) {
   for (let i = 0; i < obj.length; i++) {
     if (obj[i].id == userId) {
-        console.log("User", obj[i].name , "has been updated to", newUserName);
       obj[i].name = newUserName;
-      obj[i].idk = newUserName
       fs.writeFileSync("./database/data1.json", JSON.stringify(obj, null, 1));
     } else {
     }
@@ -21,13 +19,12 @@ function newObj(newUserName, newUserId) {
     }
   }
   if (isIn) {
-    console.log("User", newUserName, "already exist");
+    updateObj(newUserName, newUserId)
   }
   if (isIn === false) {
     let addNewUser = { name: `${newUserName}`, id: `${newUserId}` };
     obj.push(addNewUser);
     fs.writeFileSync("./database/data1.json", JSON.stringify(obj, null, 1));
-    console.log("New user", newUserName, "has been created");
   }
 }
 
@@ -47,12 +44,11 @@ function deleteObj(userId) {
     fs.writeFileSync("./database/data1.json", JSON.stringify(obj, null, 1));
   }
   if (isIn === false) {
-    console.log("User doesn't exist");
+
   }
 }
 
 module.exports = {
-  addItem,
   newObj,
   deleteObj
 };
