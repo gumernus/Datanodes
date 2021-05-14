@@ -1,6 +1,7 @@
+
 {
     "token": "token",
-    "prefix": ".",
+    "prefix": "!",
     "status": ".help",
     "barva": "#ffa200",
     "footer": "Tarx | Made By Tavarx",
@@ -12,6 +13,7 @@
     "novinkyChannelId": "825457047369285684",
     "joinChannelId": "825472063804276746",
     "leaveChannelId": "825472092798976080",
-    "memberCountChannelId": "825467962344603689"
+    "memberCountChannelId": "825467962344603689",
+    "partnershipChannelId": "825470377878356008",
+    "reportsChannelId": "842842217596715050"
   }
-  
