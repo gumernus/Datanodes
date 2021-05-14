@@ -42,6 +42,10 @@ function helpNormalCommand(message, Discord) {
       name: "Přivolá pomoc adminů",
       value: "`" + `${config.prefix}admin alert` + "`",
     })
+    .addFields({
+      name: "Reportuje zprávu adminům",
+      value: "`" + `${config.prefix}report <odkaz na zprávu>` + "`",
+    }) 
     .setFooter(config.footer, config.footerImage);
   message.channel.send(NormalHelpEmbed);
 }
@@ -69,6 +73,10 @@ function helpAdminCommand(message, Discord) {
         value: "`" + `${config.prefix}ban <@ping>` + "`",
       })
       .addFields({
+        name: "Smaže 100 zpráv",
+        value: "`" + `${config.prefix}clear` + "`",
+      })
+      .addFields({
         name: "Napíše oznámení",
         value: "`" + `${config.prefix}oznameni <text>` + "`",
       })
@@ -79,6 +87,10 @@ function helpAdminCommand(message, Discord) {
       .addFields({
         name: "Udělá giveaway",
         value: "`" + `${config.prefix}giveaway <cena giveawaye>` + "`",
+      })
+      .addFields({
+        name: "Udělá spolupráci",
+        value: "`" + `${config.prefix}partnership <text spolupráce>` + "`",
       })
     .setFooter(config.footer, config.footerImage);
   message.channel.send(AdminHelpEmbed);
