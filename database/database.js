@@ -1,6 +1,16 @@
 let fs = require("fs");
 const obj = require("./data1.json");
 
+function addItem(itemType, itemName, userId) {
+  for (let i = 0; i < obj.length; i++) {
+    if (obj[i].id == userId) {
+      Object.assign(obj[i], { [itemType]: `${itemName}`});
+      fs.writeFileSync("./database/data1.json", JSON.stringify(obj, null, 1));
+    } else {
+    }
+  }
+}
+
 function updateObj(newUserName, userId) {
   for (let i = 0; i < obj.length; i++) {
     if (obj[i].id == userId) {
@@ -50,5 +60,6 @@ function deleteObj(userId) {
 
 module.exports = {
   newObj,
-  deleteObj
+  deleteObj,
+  addItem
 };
