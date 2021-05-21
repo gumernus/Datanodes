@@ -26,7 +26,8 @@ const {
   novinky,
   giveaway,
   partnership,
-  clearAll
+  clearAll,
+  anketa
 } = require("./commands/normal/easy");
 const { newObj, deleteObj } = require("./database/database");
 const { voiceJoin, voiceLeave } = require("./commands/normal/voice");
@@ -50,6 +51,16 @@ client.on("ready", () => {
   client.user.setActivity(config.status);
 
   client.on("message", (message) => {
+    if(message.author.tag === config.disboardTag){
+      if (message.embeds[0].description.includes("Vyčkej prosím")){
+        message.delete()
+        message.channel.send(message.embeds[0].description)
+      }
+      if (message.embeds[0].description.includes("Úspěšný bump")){
+        message.delete()
+        message.channel.send(message.embeds[0].description)
+      }
+    }
     if (message.author.bot) {
       return;
     }
@@ -87,6 +98,10 @@ client.on("ready", () => {
       }
       if (message.content.startsWith(`${config.prefix}giveaway`)) {
         giveaway(message, Discord, client);
+        return;
+      }
+      if (message.content.startsWith(`${config.prefix}anketa`)) {
+        anketa(message, Discord, client);
         return;
       }
       if (message.content.startsWith(`${config.prefix}report`)) {
@@ -163,4 +178,4 @@ keepAlive();
 //process.env['DISCORD_BOT_TOKEN']
 //config.token
 
-client.login(process.env['DISCORD_BOT_TOKEN']);
+client.login(config.token);
