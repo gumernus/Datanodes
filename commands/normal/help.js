@@ -57,6 +57,10 @@ function helpAdminCommand(message, Discord) {
     .setDescription( "Veškeré commandy pro admin team."
     )
     .addFields({
+      name: "Smaže 100 zpráv",
+      value: "`" + `${config.prefix}clear` + "`",
+    })
+    .addFields({
         name: "Varuje uživatele",
         value: "`" + `${config.prefix}warn <@ping>` + "`",
       })
@@ -73,10 +77,6 @@ function helpAdminCommand(message, Discord) {
         value: "`" + `${config.prefix}ban <@ping>` + "`",
       })
       .addFields({
-        name: "Smaže 100 zpráv",
-        value: "`" + `${config.prefix}clear` + "`",
-      })
-      .addFields({
         name: "Napíše oznámení",
         value: "`" + `${config.prefix}oznameni <text>` + "`",
       })
@@ -91,6 +91,10 @@ function helpAdminCommand(message, Discord) {
       .addFields({
         name: "Udělá spolupráci",
         value: "`" + `${config.prefix}partnership <text spolupráce>` + "`",
+      })
+      .addFields({
+        name: "Udělá Anketu",
+        value: "`" + `${config.prefix}anketa <text ankety>` + "`",
       })
     .setFooter(config.footer, config.footerImage);
   message.channel.send(AdminHelpEmbed);
