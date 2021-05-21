@@ -29,7 +29,7 @@ const {
   clearAll,
   anketa
 } = require("./commands/normal/easy");
-const { newObj, deleteObj } = require("./database/database");
+const { newObj, deleteObj, addItem } = require("./database/database");
 const { voiceJoin, voiceLeave } = require("./commands/normal/voice");
 const { serverInfo } = require("./commands/normal/info");
 const { Kick, Ban, Mute, Warn, ReportByUser } = require("./commands/moderating/restrict");
@@ -123,6 +123,10 @@ client.on("ready", () => {
       }
       if (message.content === `${config.prefix}delete`) {
         deleteObj(message.author.id);
+        return;
+      }
+      if (message.content === `${config.prefix}add`) {
+        addItem("luk", "longbow", message.author.id);
         return;
       }
       if (message.content === `${config.prefix}join`) {
