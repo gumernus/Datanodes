@@ -90,7 +90,9 @@ function oznameni(message, Discord, client) {
     oznameniChannel = client.channels.cache.get(config.oznameniChannelId);
     let oznameniContent = message.content.replace(`${config.prefix}oznameni`, "");
     message.delete();
-    oznameniChannel.send(oznameniContent);
+    oznameniChannel.send(oznameniContent).then(msg => {
+      msg.react("📣")
+      })
   } else {
     const Embed = new Discord.MessageEmbed()
       .setColor(config.barva)
@@ -100,7 +102,31 @@ function oznameni(message, Discord, client) {
       )
       .setThumbnail(config.photo)
       .setFooter(config.footer, config.footerImage);
-    message.channel.send(Embed);
+    message.channel.send(Embed)
+  }
+}
+
+function anketa(message, Discord, client) {
+  if (
+    message.member.hasPermission("ADMINISTRATOR")
+  ) {
+    oznameniChannel = client.channels.cache.get(config.oznameniChannelId);
+    let anketaContent = message.content.replace(`${config.prefix}anketa`, "");
+    message.delete();
+    oznameniChannel.send(anketaContent).then(msg => {
+      msg.react("✅")
+      msg.react("❎")
+      })
+  } else {
+    const Embed = new Discord.MessageEmbed()
+      .setColor(config.barva)
+      .setTitle(`🚪 | ${message.author.tag} Nemáš oprávnění vytvořit anketu`)
+      .setDescription(
+        `Tvá oprávnění nejsou dostatečně velká na to aby mohl/a vytvořit anketu`
+      )
+      .setThumbnail(config.photo)
+      .setFooter(config.footer, config.footerImage);
+    message.channel.send(Embed)
   }
 }
 
@@ -111,7 +137,9 @@ function novinky(message, Discord, client) {
     novinkyChannel = client.channels.cache.get(config.novinkyChannelId);
     let novinkyContent = message.content.replace(`${config.prefix}novinka`, "");
     message.delete();
-    novinkyChannel.send(novinkyContent);
+    novinkyChannel.send(novinkyContent).then(msg => {
+      msg.react("📰")
+      })
   } else {
     const Embed = new Discord.MessageEmbed()
       .setColor(config.barva)
@@ -121,7 +149,7 @@ function novinky(message, Discord, client) {
       )
       .setThumbnail(config.photo)
       .setFooter(config.footer, config.footerImage);
-    message.channel.send(Embed);
+    message.channel.send(Embed)
   }
 }
 
@@ -131,9 +159,11 @@ function giveaway(message, Discord, client) {
   ) {
     oznameniChannel = client.channels.cache.get(config.oznameniChannelId);
     var randomUser = message.guild.members.cache.random();
-    let oznameniContent = "Cena:" + message.content.replace(`${config.prefix}giveaway`, "") + ` Výherce: ${randomUser.user.tag}`;
+    let giveawayContent = "Cena:" + message.content.replace(`${config.prefix}giveaway`, "") + ` Výherce: ${randomUser.user.tag}`;
     message.delete();
-    oznameniChannel.send(oznameniContent);
+    oznameniChannel.send(giveawayContent).then(msg => {
+      msg.react("🎉")
+      })
   } else {
     const Embed = new Discord.MessageEmbed()
       .setColor(config.barva)
@@ -143,7 +173,7 @@ function giveaway(message, Discord, client) {
       )
       .setThumbnail(config.photo)
       .setFooter(config.footer, config.footerImage);
-    message.channel.send(Embed);
+    message.channel.send(Embed)
   }
 }
 
@@ -154,7 +184,9 @@ function partnership(message, Discord, client) {
     partnershipChannel = client.channels.cache.get(config.partnershipChannelId);
     let partnershipContent = message.content.replace(`${config.prefix}partnership`, "");
     message.delete();
-    partnershipChannel.send(partnershipContent);
+    partnershipChannel.send(partnershipContent).then(msg => {
+      msg.react("⭐")
+      })
   } else {
     const Embed = new Discord.MessageEmbed()
       .setColor(config.barva)
@@ -164,9 +196,11 @@ function partnership(message, Discord, client) {
       )
       .setThumbnail(config.photo)
       .setFooter(config.footer, config.footerImage);
-    message.channel.send(Embed);
+    message.channel.send(Embed)
   }
 }
+
+
 
 
 
@@ -180,5 +214,6 @@ module.exports = {
   novinky,
   giveaway,
   partnership,
-  clearAll
+  clearAll,
+  anketa
 };
