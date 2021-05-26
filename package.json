@@ -1,0 +1,24 @@
+{
+  "name": "tarx",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">     <a href=\"https://cdn.discordapp.com/\"><img src=\"https://cdn.discordapp.com/app-icons/813370804641071105/127207bb917d8a759a7d5a4af41e140b.png\" height=\"200\" width=\"200\"></a>     <h1>Tarx</h1>     <strong>Disord bot focused on work with data, moderation and database.</strong><br><br> </div>",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gumernus/tarx.git"
+  },
+  "author": "Gumernus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gumernus/tarx/issues"
+  },
+  "homepage": "https://github.com/gumernus/tarx#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "express": "^4.17.1"
+  }
+}

@@ -1,0 +1,22 @@
+
+{
+    "token": "token",
+    "prefix": "!",
+    "status": ".help",
+    "barva": "#ffa200",
+    "footer": "Tarx | Made By Tavarx",
+    "botOwnerTag": "Gumernus#0122",
+    "disboardTag": "DISBOARD#2760",
+    "joinRoleId":"825457047025221689",
+    "muteRoleId": "825457047025221685",
+    "modRoleId": "825457047054057529",
+    "adminRoleId": "825457047054057530",
+    "badWordsTolerantRoleId": "825457047054057523",
+    "oznameniChannelId": "825458683550105611",
+    "novinkyChannelId": "825457047369285684",
+    "joinChannelId": "825472063804276746",
+    "leaveChannelId": "825472092798976080",
+    "memberCountChannelId": "825467962344603689",
+    "partnershipChannelId": "825470377878356008",
+    "reportsChannelId": "842842217596715050"
+  }
