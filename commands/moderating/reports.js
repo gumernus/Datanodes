@@ -18,20 +18,26 @@
         message.channel.send(`${message.author.tag} musíš zkopírovat odkaz na zprávu kterou chceš reportovat.`)
       }
   }
-  function badWords(message, Discord, client) {
+      function badWords(message, Discord, client) {
     forbidenWords = [
+      "mrdka",
+      "kurva",
       "kokot",
       "piča",
       "debil",
       "zmrd",
       "čurák",
       "pica",
+      "pico",
+      "Mrdka",
+      "Kurva",
       "Kokot",
       "Piča",
       "Debil",
       "Zmrd",
       "Čurák",
       "Pica",
+      "Pico",
     ];
     doNotAlowedWords = [
       "discord.gg",
@@ -41,18 +47,24 @@
     ];
 
     forbidenWords2 = [
+      "mrd*a",
+      "kur*a",
       "kok*t",
       "pi*a",
       "deb*l",
       "zm*d",
       "čur*k",
       "pic*",
+      "pic*",
+      "Mrd*a",
+      "Kur*a",
       "Kok*t",
       "Pi*a",
       "Deb*l",
       "Zm*d",
       "Čur*k",
       "Pi*a",
+      "Pic*",
     ];
     doNotAlowedWords2 = [
       "discord.gg",
@@ -75,20 +87,13 @@
     }
     for (var i = 0; i < doNotAlowedWords.length; i++) {
       if (message.content.includes(doNotAlowedWords[i])) {
-        if(message.member.roles.cache.has(config.badWordsTolerantRoleId)){
-
-        }
-        else{
           message.delete()
           Report(message, Discord, client);
           message.channel.send(`${message.author.tag} pozor tohle tady nepovolujeme. Konkrétně frázi ${[doNotAlowedWords2[i]]}`)
           return;
-        }
-
       }
     }
   }
-
 
 
 //EXPORT MODULES
