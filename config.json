@@ -1,7 +1,7 @@
 
 {
-    "token": "token",
-    "prefix": ".",
+    "token": "",
+    "prefix": "!",
     "status": ".help",
     "barva": "#ffa200",
     "footer": "Tarx | Made By Tavarx",
@@ -12,6 +12,7 @@
     "modRoleId": "825457047054057529",
     "adminRoleId": "825457047054057530",
     "badWordsTolerantRoleId": "825457047054057523",
+    "miningChannelId": "847450754797010954",
     "oznameniChannelId": "825458683550105611",
     "novinkyChannelId": "825457047369285684",
     "joinChannelId": "825472063804276746",
