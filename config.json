@@ -1,7 +1,7 @@
 
 {
     "token": "token",
-    "prefix": "!",
+    "prefix": ".",
     "status": ".help",
     "barva": "#ffa200",
     "footer": "Tarx | Made By Tavarx",
