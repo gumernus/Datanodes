@@ -1,13 +1,38 @@
+const { Message } = require("discord.js");
 let fs = require("fs");
 const obj = require("./data1.json");
 
-function addItem(itemType, itemName, userId) {
+function addItem(itemName, itemValue, userId) {
   for (let i = 0; i < obj.length; i++) {
     if (obj[i].id == userId) {
-      Object.assign(obj[i], { [itemType]: `${itemName}`});
-      fs.writeFileSync("./database/data1.json", JSON.stringify(obj, null, 1));
+      if (typeof itemValue === "number") {
+        if (obj[i][`${itemName}`]){
+          itemValue = itemValue + obj[i][`${itemName}`];
+          Object.assign(obj[i], { [itemName]: itemValue });
+          fs.writeFileSync("./database/data1.json", JSON.stringify(obj, null, 1));
+        }
+        else{
+          Object.assign(obj[i], { [itemName]: itemValue });
+          fs.writeFileSync("./database/data1.json", JSON.stringify(obj, null, 1));
+        }
+        } 
+
+        if (typeof itemValue === "string") {
+          Object.assign(obj[i], { [itemName]: itemValue });
+          fs.writeFileSync("./database/data1.json", JSON.stringify(obj, null, 1));
+        }
+    } else {
+      newObj(userId);
     }
-    else{
+  }
+}
+
+function lookInventory(message, userId){
+  for (let i = 0; i < obj.length; i++) {
+    if (obj[i].id == userId) {
+      message.channel.send("Ve svém inventáři máš " + obj[i][`železo`] + "x železo")
+    } else {
+      newObj(userId);
     }
   }
 }
@@ -22,7 +47,7 @@ function updateObj(newUserName, userId) {
   }
 }
 
-function newObj(newUserName, newUserId) {
+function newObj(newUserId) {
   let isIn = false;
   for (let i = 0; i < obj.length; i++) {
     if (obj[i].id == newUserId) {
@@ -30,10 +55,10 @@ function newObj(newUserName, newUserId) {
     }
   }
   if (isIn) {
-    updateObj(newUserName, newUserId)
+    updateObj(newUserId);
   }
   if (isIn === false) {
-    let addNewUser = { name: `${newUserName}`, id: `${newUserId}` };
+    let addNewUser = { id: `${newUserId}` };
     obj.push(addNewUser);
     fs.writeFileSync("./database/data1.json", JSON.stringify(obj, null, 1));
   }
@@ -41,25 +66,24 @@ function newObj(newUserName, newUserId) {
 
 function deleteObj(userId) {
   let isIn = false;
-  let i = 0
+  let i = 0;
   for (let i = 0; i < obj.length; i++) {
     if (obj[i].id == userId) {
       isIn = true;
     }
   }
   if (isIn) {
-    
-    const index = obj.findIndex(obj => obj.id === userId);
+    const index = obj.findIndex((obj) => obj.id === userId);
     if (index !== undefined) obj.splice(index, 1);
     fs.writeFileSync("./database/data1.json", JSON.stringify(obj, null, 1));
   }
   if (isIn === false) {
-
   }
 }
 
 module.exports = {
   newObj,
   deleteObj,
-  addItem
+  addItem,
+  lookInventory
 };

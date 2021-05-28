@@ -18,7 +18,7 @@
         message.channel.send(`${message.author.tag} musíš zkopírovat odkaz na zprávu kterou chceš reportovat.`)
       }
   }
-      function badWords(message, Discord, client) {
+  function badWords(message, Discord, client) {
     forbidenWords = [
       "mrdka",
       "kurva",
@@ -94,6 +94,7 @@
       }
     }
   }
+
 
 
 //EXPORT MODULES

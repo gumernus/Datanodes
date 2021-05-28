@@ -22,12 +22,13 @@
     const { helpCommand, helpNormalCommand, helpAdminCommand } = require("./commands/normal/help");
     const { joinCommand, leaveCommand } = require("./commands/normal/join_leave");
     const { sayCommand ,permaInvite, adminAlert, modAlert, oznameni, novinky, giveaway, partnership, anketa } = require("./commands/normal/easy");
-    const { newObj, deleteObj, addItem } = require("./database/database");
+    const { newObj, deleteObj, addItem, lookInventory } = require("./database/database");
     const { voiceJoin, voiceLeave } = require("./commands/normal/voice");
     const { serverInfo } = require("./commands/normal/info");
     const { Kick, Ban, Mute, Warn, clearAll } = require("./commands/moderating/restrict");
     const { ReportByUser, badWords } = require("./commands/moderating/reports")
     const { resetBot } = require("./commands/admin/admin-only")
+    const { check } = require("./commands/minigames/mining")
 
 
 
@@ -88,7 +89,11 @@
     else {
     badWords(message, Discord, client);
 
-
+//MINIGAMES
+    if(message.channel.id === config.miningChannelId){
+        check(message, Discord, client);
+        return
+    }
 
 //HELP COMMANDS
     if (message.content === `${config.prefix}help`) {
@@ -177,6 +182,10 @@
     }
     if (message.content === `${config.prefix}add`) {
     addItem("luk", "longbow", message.author.id);
+    return;
+    }
+    if (message.content === `${config.prefix}inventory`) {
+    lookInventory(message, message.author.id)
     return;
     }
     if (message.content === `${config.prefix}join`) {
