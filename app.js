@@ -13,7 +13,7 @@
 
 //IMPORT COLORS
     let CReset = "\x1b[0m";
-    let CYellow = "\x1b[33m";
+    let CGreen = "\x1b[32m";
     let CRed = "\x1b[31m";
 
 
@@ -40,27 +40,47 @@
 
 //STARTING
     console.clear()
-    process.stdout.write(CYellow + `$ Bot starting`)
+    
     client.on("ready", () => {
-    keepAlive();
-    process.stdout.write(`\r$ Server started`)
-    setTimeout(() => {
-    client.user.setStatus("available");
-    client.user.setActivity(config.status);
-    process.stdout.write(`\r$ Configuration done`)
-    }, 1000);
-    setTimeout(() => {
-    newObj("test tag", "test id")
-    addItem("test item id", "test item name", "test id");
-    deleteObj("test id")
-    process.stdout.write(`\r$ Database test done`)
-    }, 2000);
-    setTimeout(() => {
-    const clientName = client.user.username;
-    const clientNameCapitalized = clientName.charAt(0).toUpperCase() + clientName.slice(1);
-    process.stdout.write(`\r                    `)
-    console.log("\r$ " + clientNameCapitalized, `is online (version: ${package.version})`, CReset)
-    }, 3000);
+    console.log(CReset + "Bot startig.. " + CGreen + "PASSED")
+
+    try {
+        keepAlive();
+        console.log(CReset + "Server starting.. " + CGreen + "PASSED")
+      }
+    catch(err) {
+        console.log(CReset + "Server starting.. " + CRed + "FAILED")
+        }
+
+    try {
+        client.user.setStatus("available");
+        client.user.setActivity(config.status);
+        console.log(CReset + "Setting configuration.. " + CGreen + "PASSED")
+    }
+    catch(err) {
+        console.log(CReset + "Setting configuration.. " + CRed + "FAILED")
+        }
+
+    try {
+        newObj("test tag", "test id")
+        addItem("test item id", "test item name", "test id");
+        deleteObj("test id")
+        console.log(CReset + "Database testing.. " + CGreen + "PASSED")
+        }
+    catch(err) {
+        console.log(CReset + "Database testing.. " + CRed + "FAILED")
+        }
+
+    try {
+        const clientName = client.user.username;
+        const clientNameCapitalized = clientName.charAt(0).toUpperCase() + clientName.slice(1);
+        console.log(CReset + clientNameCapitalized + ` is online (version: ${package.version}).. ` + CGreen + "PASSED" + CReset)    
+        }
+    catch(err) {
+        console.log(CReset + clientNameCapitalized + ` is online (version: ${package.version}).. ` + CRed + "FAILED" + CReset)    
+        }
+    
+
     
 
     
