@@ -74,10 +74,6 @@
     ];
     for (var i = 0; i < forbidenWords.length; i++) {
       if (message.content.includes(forbidenWords[i])) {
-        if(message.member.roles.cache.has(config.badWordsTolerantRoleId)){
-
-        }
-        else{
           message.delete()
           Report(message, Discord, client);
           message.channel.send(`${message.author.tag} pozor na slovník. Konkrétně na slovo ${forbidenWords2[i]}`)
@@ -92,8 +88,7 @@
           message.channel.send(`${message.author.tag} pozor tohle tady nepovolujeme. Konkrétně frázi ${[doNotAlowedWords2[i]]}`)
           return;
       }
-    }
-  }
+}
 
 
 

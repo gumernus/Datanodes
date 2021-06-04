@@ -42,7 +42,7 @@
     console.clear()
     
     client.on("ready", () => {
-    console.log(CReset + "Bot startig.. " + CGreen + "PASSED")
+    console.log(CReset + "Bot starting.. " + CGreen + "PASSED")
 
     try {
         keepAlive();
