@@ -1,29 +1,37 @@
-#include <iostream>
-#include <cstdlib>
 #include <dpp/dpp.h>
-
-const std::string    BOT_TOKEN    = "";
-const dpp::snowflake MY_GUILD_ID  =  825457047025221682;
-
-int main() {
-    dpp::cluster bot(BOT_TOKEN);
-
-    bot.on_log(dpp::utility::cout_logger());
-
-    bot.on_interaction_create([](const dpp::interaction_create_t& event) {
-         if (event.command.get_command_name() == "ping") {
-            event.reply("Pong!");
-        }
+ 
+int main()
+{
+	uint64_t intents = dpp::i_default_intents | dpp::i_message_content;
+    dpp::cluster bot("", intents);
+	bot.on_log(dpp::utility::cout_logger());
+    dpp::commandhandler command_handler(&bot);
+    command_handler.add_prefix(".").add_prefix("/");
+ 
+    bot.on_ready([&command_handler](const dpp::ready_t &event) {
+ 
+        command_handler.add_command(
+            "test",
+            {
+				{"first", dpp::param_info(dpp::pt_string, true, "idk") },
+				/* {"second", dpp::param_info( dpp::pt_string, true, "lmao") } */
+			},
+ 
+            [&command_handler](const std::string& command, const dpp::parameter_list_t& parameters, dpp::command_source src) {
+                std::string got_param;
+                if (!parameters.empty()) {
+                    got_param = std::get<std::string>(parameters[0].second);
+                }
+                command_handler.reply(dpp::message("Pogisek -> " + got_param), src);
+            },"test commandík",825457047025221682
+        );
+ 
+        command_handler.register_commands();
+		std::cout << "BOT IS RUNNING" << "\n";
+ 
     });
-
-    bot.on_ready([&bot](const dpp::ready_t& event) {
-        if (dpp::run_once<struct register_bot_commands>()) {
-            bot.guild_command_create(
-                dpp::slashcommand("ping", "Ping pong!", bot.me.id),
-                MY_GUILD_ID
-            );
-        }
-    });
-
+ 
     bot.start(false);
+ 
+    return 0;
 }
