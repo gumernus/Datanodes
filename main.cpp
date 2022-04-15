@@ -13,8 +13,9 @@ int main()
         command_handler.add_command(
             "test",
             {
-				{"first", dpp::param_info(dpp::pt_string, true, "idk") },
-				/* {"second", dpp::param_info( dpp::pt_string, true, "lmao") } */
+				{"first", dpp::param_info(dpp::pt_string, true, "idk") }, // if true == non-optional
+				{"second", dpp::param_info( dpp::pt_string, true, "lmao") },
+				{"third", dpp::param_info( dpp::pt_string, true, "xd")}
 			},
  
             [&command_handler](const std::string& command, const dpp::parameter_list_t& parameters, dpp::command_source src) {
